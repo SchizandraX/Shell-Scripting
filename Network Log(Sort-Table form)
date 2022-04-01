@@ -1,0 +1,17 @@
+#!/bin/bash
+#THIS SCRIPT SHOW NET. DETAILS/LOG
+#main file is raws.txt and rawsed.txt as temp/buffer file
+
+sed 's/ads-02-cj1cb/,ads-02-cj1cb/g;s/pravail:/,pravail:/g;s/destination/destination,/g;s/host/host,/g;s/at/,at/g;s/by/by,/g;s/using/,using/g' raws.txt > rawsed.txt
+#sed 's/destination/destination,/g' raws.txt > rawsed.txt
+
+awk 'BEGIN {FS=","}
+
+       { print "time : " $1
+         print "from : " $2
+         print "blocked_host: " $4
+         print "attack_type : " $6
+         print "destination : " $9
+         printf "__________________________________"
+         printf "\n"
+       }' rawsed.txt
